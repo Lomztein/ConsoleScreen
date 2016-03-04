@@ -153,6 +153,7 @@ namespace Graphics3D {
         
             for (int i = 0; i < contents.Length; i++) {
                 if (contents[i] != null) {
+                    contents[i] = contents[i].Replace('.', ',');
                     switch (contents[i].Substring (0, 2)) {
                         case "v ":
 
@@ -175,9 +176,13 @@ namespace Graphics3D {
                             }
                             
                             for (int j = 0; j < copy.Length; j++) {
+
+                                int n1 = copy[j].IndexOf('/');
+                                int n2 = copy[(j + 1) % (copy.Length)].IndexOf('/');
+
                                 edges.Add (new Edge (
-                                    int.Parse (copy[j].Substring (0, 1)) - 1,
-                                    int.Parse (copy[(j + 1) % (copy.Length)].Substring (0, 1)) - 1
+                                    int.Parse (copy[j].Substring (0, n1)) - 1,
+                                    int.Parse (copy[(j + 1) % (copy.Length)].Substring (0, n2)) - 1
                                     ));
                             }
 

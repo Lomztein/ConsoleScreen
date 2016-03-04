@@ -7,14 +7,14 @@ using Graphics3D;
 namespace ConsoleScreen {
     class Program {
 
-        public static int width = 40, height = 20;
+        public static int width = 160, height = 80;
         public static float aspect;
 
         public static char[,] pixels;
         public static double[,] depth;
 
         public static bool vsync = true;
-        public static int desiredFPS = 60;
+        public static int desiredFPS = 30;
 
         private static float lastTickTime;
         private static int lastTime;
@@ -24,11 +24,11 @@ namespace ConsoleScreen {
 
         static void Main (string[] args) {
 
-            InitializeScreen ();
+            InitializeScreen();
             isRunning = true;
 
-            Mesh mesh = Mesh.LoadMeshFromOBJFile ("C:/Users/Lomztein/Documents/poop.obj");
-            activeObjects.Add (new MeshRenderer (new Vector2D (width / 2, height / 2), new Vector3D (0.1, 0.2, 1), mesh, 10));
+            Mesh mesh = Mesh.LoadMeshFromOBJFile("D:/Dokumenter/ConsoleScreen/Models/TARDIS/TARDIS.obj");
+            activeObjects.Add (new MeshRenderer (new Vector2D (width / 2, height / 2), new Vector3D (0.1, 0.4, 0.1), mesh, -10));
 
             while (isRunning) {
                 int time = DateTime.Now.Millisecond;
@@ -90,8 +90,9 @@ namespace ConsoleScreen {
             string[] scanlines = new string[height + 1];
             string render = "";
 
-            scanlines[0] = "Tick time: " + deltaTime;
+            //scanlines[0] = "Tick time: " + deltaTime;
             render += scanlines[0] + "\n";
+
             
             for (int y = 1; y < scanlines.Length; y++) {
                 scanlines[y] = "";
@@ -103,7 +104,6 @@ namespace ConsoleScreen {
             }
 
             Console.Write (render + "\n\n\n\n\n");
-            Console.WriteLine ("pause");
         }
     }
 }

@@ -37,13 +37,13 @@ namespace Graphics3D {
 
                 Vector3D startOrtho = (Vector3D)screenPoint + new Vector3D (
                     local[mesh.edges[i].start].x,
-                    local[mesh.edges[i].start].z,
-                    local[mesh.edges[i].start].y) * scale;
+                    local[mesh.edges[i].start].y,
+                    local[mesh.edges[i].start].z) * scale;
 
                 Vector3D endOrtho = (Vector3D)screenPoint + new Vector3D (
                     local[mesh.edges[i].end].x,
-                    local[mesh.edges[i].end].z,
-                    local[mesh.edges[i].end].y) * scale;
+                    local[mesh.edges[i].end].y,
+                    local[mesh.edges[i].end].z) * scale;
 
                 Drawing.RenderLine (startOrtho, endOrtho);
 
