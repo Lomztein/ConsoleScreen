@@ -1,0 +1,6 @@
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\bin\Debug\ConsoleScreen.exe.config
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\bin\Debug\ConsoleScreen.exe
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\bin\Debug\ConsoleScreen.pdb
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.exe
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.pdb
+C:\Users\Lomztein\documents\visual studio 2015\Projects\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.csprojResolveAssemblyReference.cache
