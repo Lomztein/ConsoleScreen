@@ -22,13 +22,18 @@ namespace ConsoleScreen {
 
         public static List<ActiveObject> activeObjects = new List<ActiveObject>();
 
-        static void Main (string[] args) {
+        static void Main () {
 
             InitializeScreen();
             isRunning = true;
 
-            Mesh mesh = Mesh.LoadMeshFromOBJFile("D:/Dokumenter/ConsoleScreen/Models/TARDIS/TARDIS.obj");
-            activeObjects.Add (new MeshRenderer (new Vector2D (width / 2, height / 2), new Vector3D (0.1, 0.4, 0.1), mesh, -10));
+            Console.WriteLine("Input path to desired model in .obj format, please.");
+            string path = Console.ReadLine();
+            Console.WriteLine("Input model scale.");
+            double scale = double.Parse(Console.ReadLine());
+
+            Mesh mesh = Mesh.LoadMeshFromOBJFile(path);
+            activeObjects.Add(new MeshRenderer(new Vector2D(width / 2, height / 2), new Vector3D(0.1, 0.4, 0.1), mesh, -scale));
 
             while (isRunning) {
                 int time = DateTime.Now.Millisecond;
