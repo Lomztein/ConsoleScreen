@@ -14,3 +14,9 @@ D:\Dokumenter\ConsoleScreen\ConsoleScreen\bin\Debug\ConsoleScreen.exe.lastcodean
 D:\Dokumenter\ConsoleScreen\Compiled\ConsoleScreen.exe.config
 D:\Dokumenter\ConsoleScreen\Compiled\ConsoleScreen.exe
 D:\Dokumenter\ConsoleScreen\Compiled\ConsoleScreen.pdb
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\Compiled\ConsoleScreen.exe.config
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.exe
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.pdb
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\ConsoleScreen\obj\Debug\ConsoleScreen.csprojResolveAssemblyReference.cache
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\Compiled\ConsoleScreen.exe
+C:\Users\Lomztein\Documents\GitHub\ConsoleScreen\Compiled\ConsoleScreen.pdb

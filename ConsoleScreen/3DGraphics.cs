@@ -130,7 +130,14 @@ namespace Graphics3D {
     class Mesh {
 
         public Vector3D[] verticies;
-        public Edge[] edges;
+        public Face[] faces;
+
+        public class Face {
+
+            public Edge[] edges;
+            public Vector3D normal;
+
+        }
         
         public class Edge {
 
@@ -146,11 +153,14 @@ namespace Graphics3D {
         }
 
         public static Mesh LoadMeshFromOBJFile (string path) {
+            Console.WriteLine ("Getting file contents...");
             string[] contents = Utility.Utility.GetContents (path);
 
             List<Vector3D> verts = new List<Vector3D> ();
-            List<Edge> edges = new List<Edge> ();
-        
+            List<Face> faces = new List<Face> ();
+            List<Vector3D> normals = new List<Vector3D> ();
+
+            Console.WriteLine ("Parsing file...");
             for (int i = 0; i < contents.Length; i++) {
                 if (contents[i] != null) {
                     contents[i] = contents[i].Replace('.', ',');
@@ -166,7 +176,20 @@ namespace Graphics3D {
 
                             break;
 
+                        case "vn":
+                            string[] locn = contents[i].Split (' ');
+                            normals.Add (new Vector3D (
+                                double.Parse (locn[1]),
+                                double.Parse (locn[2]),
+                                double.Parse (locn[3])
+                                ));
+
+                            break;
+
                         case "f ":
+
+                            Face f = new Face ();
+                            List<Edge> edges = new List<Edge> ();
 
                             string[] loce = contents[i].Split (' ');
                             string[] copy = new string[loce.Length - 1];
@@ -174,6 +197,8 @@ namespace Graphics3D {
                             for (int a = 1; a < loce.Length; a++) {
                                 copy[a - 1] = loce[a];
                             }
+
+                            List<int> norms = new List<int> ();
                             
                             for (int j = 0; j < copy.Length; j++) {
 
@@ -184,7 +209,19 @@ namespace Graphics3D {
                                     int.Parse (copy[j].Substring (0, n1)) - 1,
                                     int.Parse (copy[(j + 1) % (copy.Length)].Substring (0, n2)) - 1
                                     ));
+
+                                norms.Add (int.Parse (copy[j].Substring (n1 + 2, copy[j].Length - (n1 + 2))));
                             }
+
+                            Vector3D avarage = new Vector3D (0, 0, 0);
+                            for (int a = 0; a < norms.Count; a++) {
+                                avarage += normals[norms[a] - 1];
+                            }
+                            avarage /= norms.Count;
+
+                            f.normal = avarage;
+                            f.edges = edges.ToArray ();
+                            faces.Add (f);
 
                             break;
 
@@ -195,14 +232,14 @@ namespace Graphics3D {
             }
 
             Console.WriteLine ("Vertices: " + verts.Count.ToString ());
-            Console.WriteLine ("Edges: " + edges.Count.ToString ());
+            Console.WriteLine ("Edges: " + faces.Count.ToString ());
 
-            return new Mesh (verts.ToArray (), edges.ToArray ());
+            return new Mesh (verts.ToArray (), faces.ToArray ());
         }
 
-        public Mesh (Vector3D[] verts, Edge[] edgelords) {
+        public Mesh (Vector3D[] verts, Face[] facelords) {
             verticies = verts;
-            edges = edgelords;
+            faces = facelords;
         }
     }
 }

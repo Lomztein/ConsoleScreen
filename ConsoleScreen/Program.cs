@@ -7,7 +7,7 @@ using Graphics3D;
 namespace ConsoleScreen {
     class Program {
 
-        public static int width = 160, height = 80;
+        public static int width = 80, height = 40;
         public static float aspect;
 
         public static char[,] pixels;

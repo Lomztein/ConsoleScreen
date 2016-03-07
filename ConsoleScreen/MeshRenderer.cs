@@ -28,28 +28,33 @@ namespace Graphics3D {
         public override void RenderToBuffer () {
             // Rotate verts
             Vector3D[] local = new Vector3D[mesh.verticies.Length];
+            Vector3D[] localNorms = new Vector3D[mesh.faces.Length];
             for (int i = 0; i < local.Length; i++) {
                 local[i] = Vector3D.TransformPosition (mesh.verticies[i], rotation);
             }
-
-            // Draw verts
-            for (int i = 0; i < mesh.edges.Length; i++) {
-
-                Vector3D startOrtho = (Vector3D)screenPoint + new Vector3D (
-                    local[mesh.edges[i].start].x,
-                    local[mesh.edges[i].start].y,
-                    local[mesh.edges[i].start].z) * scale;
-
-                Vector3D endOrtho = (Vector3D)screenPoint + new Vector3D (
-                    local[mesh.edges[i].end].x,
-                    local[mesh.edges[i].end].y,
-                    local[mesh.edges[i].end].z) * scale;
-
-                Drawing.RenderLine (startOrtho, endOrtho);
-
+            for (int i = 0; i < localNorms.Length; i++) {
+                localNorms[i] = Vector3D.TransformPosition (mesh.faces[i].normal, rotation);
             }
 
-        }
+            // Draw verts
+            for (int i = 0; i < mesh.faces.Length; i++) {
+                if (localNorms[i].z > 0) {
+                    for (int j = 0; j < mesh.faces[i].edges.Length; j++) {
 
+                        Vector3D startOrtho = (Vector3D)screenPoint + new Vector3D (
+                           local[mesh.faces[i].edges[j].start].x,
+                           local[mesh.faces[i].edges[j].start].y,
+                           local[mesh.faces[i].edges[j].start].z) * scale;
+
+                        Vector3D endOrtho = (Vector3D)screenPoint + new Vector3D (
+                            local[mesh.faces[i].edges[j].end].x,
+                            local[mesh.faces[i].edges[j].end].y,
+                            local[mesh.faces[i].edges[j].end].z) * scale;
+
+                        Drawing.RenderLine (startOrtho, endOrtho);
+                    }
+                }
+            }
+        }
     }
 }
