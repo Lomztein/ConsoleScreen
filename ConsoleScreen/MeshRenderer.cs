@@ -19,6 +19,7 @@ namespace Graphics3D {
             rotationSpeed = rs;
             mesh = m;
             scale = s;
+            Console.WriteLine ("Constructing MeshRenderer...");
         }
 
         public override void Tick (float deltaTime) {

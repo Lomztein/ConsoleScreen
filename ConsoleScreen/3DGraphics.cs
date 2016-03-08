@@ -251,15 +251,22 @@ namespace Graphics2D {
         public static void RenderLine (Vector3D start, Vector3D end) {
             char character = Utility.Utility.GetDirectionalChar (end - start);
 
-            int steps = Math.Max ((int)((Vector2D)start).Distance (end), 2);
+            int steps = (int)((Vector2D)start).Distance (end);
+            //steps = (int)(Program.aspect + Program.aspect * steps * Math.Abs ((end.x - end.y) / (start.x - start.y)));
+            steps = Math.Max (steps, 2);
 
             for (int i = 0; i < steps; i++) {
                 double progress = (i / (steps - 1));
                 Vector3D pos = start + ((end - start) / steps) * i;
-                if (Program.IsInsideScreen ((int)pos.x, (int)(pos.y * Program.aspect) + Program.height / 4)
-                    && Program.depth[(int)pos.x, (int)(pos.y * Program.aspect) + Program.height / 4] < pos.z) {
-                    Program.pixels[(int)pos.x, (int)(pos.y * Program.aspect) + Program.height / 4] = character;
-                    Program.depth[(int)pos.x, (int)(pos.y * Program.aspect) + Program.height / 4] = pos.z;
+
+                int xPos = (int)pos.x;
+                int yPos = (int)(pos.y * Program.aspect) + Program.height / 4;
+
+                if (Program.IsInsideScreen (xPos, yPos)
+                    && Program.depth[xPos, yPos] < pos.z) {
+
+                    Program.pixels[xPos, yPos] = character;
+                    Program.depth[xPos, yPos] = pos.z;
                 }
             }
         }
